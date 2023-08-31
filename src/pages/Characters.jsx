@@ -14,7 +14,7 @@ const Characters = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/characters?name=${search}&skip=${skip}&limit=${limit}`
+          `https://site--marvel-backend--zqz8bqcfkwlv.code.run/characters?name=${search}&skip=${skip}&limit=${limit}`
         );
         // console.log(response.data);
         setData(response.data);

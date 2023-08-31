@@ -13,7 +13,7 @@ const CharacterFocus = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/character/${characterId}`
+          `https://site--marvel-backend--zqz8bqcfkwlv.code.run/character/${characterId}`
         );
         setData(response.data);
         setIsLoading(false);
