@@ -30,10 +30,18 @@ const CharacterFocus = () => {
   ) : (
     <div className="character-focus">
       <section className="character-information">
-        <p>{data.name}</p>
+        <p>{data.character.name}</p>
         <img
-          src={data.thumbnail.path + "." + data.thumbnail.extension}
-          alt={data.thumbnail.path + "." + data.thumbnail.extension}
+          src={
+            data.character.thumbnail.path +
+            "." +
+            data.character.thumbnail.extension
+          }
+          alt={
+            data.character.thumbnail.path +
+            "." +
+            data.character.thumbnail.extension
+          }
         />
         <p>{data.description}</p>
       </section>
@@ -41,7 +49,12 @@ const CharacterFocus = () => {
         {data.comics.map((comic, index) => {
           return (
             <div key={index}>
-              <div>{comic}</div>
+              <div>{comic.title}</div>
+              <img
+                src={comic.thumbnail.path + "." + comic.thumbnail.extension}
+                alt={comic.thumbnail.path + "." + comic.thumbnail.extension}
+              />
+              <div>{comic.description}</div>
             </div>
           );
         })}

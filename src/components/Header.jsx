@@ -22,7 +22,6 @@ const Header = () => {
           <Link to="/favorites">Favorites</Link>
         </div>
       </div>
-      ;
     </header>
   );
 };

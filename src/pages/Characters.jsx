@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const Characters = () => {
   const [data, setData] = useState({});
@@ -37,6 +38,13 @@ const Characters = () => {
     setSkip(skip + limit);
   };
 
+  const favoriteTab = [];
+  const favoriteClick = (character_id) => {
+    favoriteTab.push(character_id);
+    Cookies.set("favorites", favoriteTab, { expires: 365 });
+    // console.log(favoriteTab);
+  };
+
   return isLoading ? (
     <p>Loading ...</p>
   ) : (
@@ -61,18 +69,33 @@ const Characters = () => {
       <section className="classic-second-section">
         {data.results.map((character) => {
           return (
-            <Link key={character._id} to={`/character/${character._id}`}>
-              <h2>{character.name}</h2>
-              <p>{character.description}</p>
-              <img
-                src={
-                  character.thumbnail.path + "." + character.thumbnail.extension
-                }
-                alt={
-                  character.thumbnail.path + "." + character.thumbnail.extension
-                }
-              />
-            </Link>
+            <div key={character._id}>
+              <Link to={`/character/${character._id}`}>
+                <h2>{character.name}</h2>
+                <p>{character.description}</p>
+                <img
+                  src={
+                    character.thumbnail.path +
+                    "." +
+                    character.thumbnail.extension
+                  }
+                  alt={
+                    character.thumbnail.path +
+                    "." +
+                    character.thumbnail.extension
+                  }
+                />
+              </Link>
+              <button
+                onClick={() => favoriteClick(character._id)}
+
+                // onClick={() => {
+                //   Cookies.set(character.name, character._id, { expires: 365 });
+                // }}
+              >
+                Favoris
+              </button>
+            </div>
           );
         })}
       </section>
