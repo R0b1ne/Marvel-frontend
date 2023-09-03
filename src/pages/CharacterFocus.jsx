@@ -28,36 +28,49 @@ const CharacterFocus = () => {
   return isLoading ? (
     <p>Loading ...</p>
   ) : (
-    <div className="character-focus">
+    <div className="character-focus-container">
       <section className="character-information">
-        <p>{data.character.name}</p>
-        <img
-          src={
-            data.character.thumbnail.path +
-            "." +
-            data.character.thumbnail.extension
-          }
-          alt={
-            data.character.thumbnail.path +
-            "." +
-            data.character.thumbnail.extension
-          }
-        />
-        <p>{data.description}</p>
+        <div>
+          <h3>{data.character.name} </h3>
+          <img
+            src={
+              data.character.thumbnail.path +
+              "." +
+              data.character.thumbnail.extension
+            }
+            alt={
+              data.character.thumbnail.path +
+              "." +
+              data.character.thumbnail.extension
+            }
+          />
+          <p>{data.character.description}</p>
+        </div>
       </section>
       <section className="character-comics-list">
-        {data.comics.map((comic, index) => {
-          return (
-            <div key={index}>
-              <div>{comic.title}</div>
-              <img
-                src={comic.thumbnail.path + "." + comic.thumbnail.extension}
-                alt={comic.thumbnail.path + "." + comic.thumbnail.extension}
-              />
-              <div>{comic.description}</div>
-            </div>
-          );
-        })}
+        <h2>Comics linked to {data.character.name} </h2>
+        <div>
+          {data.comics.map((comic, index) => {
+            return (
+              <div className="card" key={index}>
+                <div>
+                  <h3>{comic.title}</h3>
+                  <img
+                    src={comic.thumbnail.path + "." + comic.thumbnail.extension}
+                    alt={comic.thumbnail.path + "." + comic.thumbnail.extension}
+                  />
+                  <div>
+                    {comic.description ? (
+                      <p>{comic.description}</p>
+                    ) : (
+                      <p>Description will come soon...</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </section>
     </div>
   );

@@ -1,42 +1,232 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Marvel&display=swap");
+
+/* Global */
+:root {
+  font-family: "Marvel", sans-serif;
+  color: white;
+}
+h1 {
+  font-size: 80px;
+  color: white;
+  cursor: default;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+/* HEADER */
+.header-container {
+  display: flex;
+  margin: auto;
+  align-items: center;
+  height: 80px;
+  border-bottom: solid 20px red;
+  justify-content: space-between; /* Ajout de cette ligne */
+  background: #0b0b14;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.header-container img {
+  height: 40px;
+  margin-left: 160px;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.header-container > div {
+  display: flex;
+  justify-content: space-between; /* Ajout de cette ligne */
+  margin-right: 200px;
+  width: 400px;
+  font-size: 20px;
+}
+.header-button {
+  text-decoration: none;
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  color: white;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* MainPage:Characters&Comics */
+.classic-container {
+  background-color: #171a2f;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  align-items: center;
+}
+.classic-first-section {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+}
+.classic-search {
+  font-size: 18px;
+  color: white;
+}
+.classic-search span {
+  color: red;
+  font-weight: bold;
+  font-size: 22px;
+}
+.classic-search input {
+  height: 15px;
+  flex: 0 0 200px;
+  margin-left: 10px;
+}
+.pagination-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+.pagination-buttons button {
+  background-color: transparent;
+  border: red 0.5px solid;
+  border-radius: 50%;
+  font: inherit;
+  color: red;
+  width: 40px;
+  cursor: pointer;
+}
+.classic-second-section {
+  margin: 50px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.classic-second-section .card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border: red 0.5px solid;
+  height: 420px;
+  width: 260px;
+}
+.classic-second-section h3 {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding: 14px 0;
+  text-decoration: underline red;
+}
+.classic-second-section img {
+  height: 240px;
+  width: 240px;
+  object-fit: cover;
+  padding-bottom: 14px;
+}
+.classic-second-section p {
+  width: 240px;
+  height: 98px;
+  overflow: hidden;
+  color: white;
+  text-align: justify;
+}
+.classic-second-section button {
+  position: absolute;
+  right: 10px;
+  top: 64px;
+  background-color: transparent;
+  font: inherit;
+  color: lightgray;
+  width: 40px;
+  border: none;
+  cursor: pointer;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* CharactersFocus*/
+.character-focus-container {
+  background: #171a2f;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+.character-information {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+.character-focus-container img {
+  height: 240px;
+  width: 240px;
+  object-fit: cover;
+  padding-bottom: 14px;
+}
+.character-information div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: red 0.5px solid;
+  height: 420px;
+  width: 260px;
+}
+.character-information h3 {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding: 14px 0;
+  text-decoration: underline red;
 }
 
-.card {
-  padding: 2em;
+.character-information p {
+  width: 240px;
+  height: 98px;
+  overflow: hidden;
+  color: white;
+  text-align: justify;
+}
+.character-comics-list {
+  margin-top: 20px;
+}
+.character-comics-list h2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: green;
+  height: 40px;
+  font-size: 18px;
+}
+.character-comics-list > div {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.character-comics-list .card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: green 0.5px solid;
+  height: 420px;
+  width: 260px;
+}
+.character-comics-list h3 {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding: 14px 0;
+  text-decoration: underline red;
 }
 
-.read-the-docs {
-  color: #888;
+.character-comics-list p {
+  width: 240px;
+  height: 98px;
+  overflow: hidden;
+  color: white;
+  text-align: justify;
+}
+.favorites-container {
+  background: #171a2f;
 }

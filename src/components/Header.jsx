@@ -17,9 +17,15 @@ const Header = () => {
           />
         </div> */}
         <div>
-          <Link to="/">Characters</Link>
-          <Link to="/comics">Comics</Link>
-          <Link to="/favorites">Favorites</Link>
+          <Link className="header-button" to="/">
+            Characters
+          </Link>
+          <Link className="header-button" to="/comics">
+            Comics
+          </Link>
+          <Link className="header-button" to="/favorites">
+            Favorites
+          </Link>
         </div>
       </div>
     </header>

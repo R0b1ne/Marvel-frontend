@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Captain from "../assets/Captain.png";
 
 const Characters = () => {
   const [data, setData] = useState({});
@@ -38,10 +40,11 @@ const Characters = () => {
     setSkip(skip + limit);
   };
 
-  const favoriteTab = [];
   const favoriteClick = (character_id) => {
+    const existingFavorites = Cookies.get("favorites");
+    const favoriteTab = existingFavorites ? JSON.parse(existingFavorites) : [];
     favoriteTab.push(character_id);
-    Cookies.set("favorites", favoriteTab, { expires: 365 });
+    Cookies.set("favorites", JSON.stringify(favoriteTab), { expires: 365 });
     // console.log(favoriteTab);
   };
 
@@ -51,28 +54,43 @@ const Characters = () => {
     <div className="classic-container">
       <section className="classic-first-section">
         <h1>Maracters</h1>
-        <div>
+        <div className="classic-search">
+          <label>
+            <span>Characters </span> search bar
+          </label>
           <input
             type="text"
             value={search}
-            placeholder="Search a Maracters"
             onChange={(event) => {
               setSearch(event.target.value);
             }}
           />
         </div>
         <div className="pagination-buttons">
-          <button onClick={handlePreviousPage}>Previous</button>
-          <button onClick={handleNextPage}>Next</button>
+          <button onClick={handlePreviousPage}>
+            <FontAwesomeIcon icon="fa-caret-left" />
+          </button>
+          <button onClick={handleNextPage}>
+            <FontAwesomeIcon icon="fa-caret-right" />
+          </button>
         </div>
       </section>
-      <section className="classic-second-section">
+      <section
+        className="classic-second-section"
+        // style={{
+        //   backgroundImage: `url(${Captain})`,
+        //   backgroundRepeat: "no-repeat",
+        //   backgroundSize: "cover",
+        // }}
+      >
         {data.results.map((character) => {
           return (
-            <div key={character._id}>
-              <Link to={`/character/${character._id}`}>
-                <h2>{character.name}</h2>
-                <p>{character.description}</p>
+            <div className="card" key={character._id}>
+              <Link
+                to={`/character/${character._id}`}
+                style={{ textDecoration: "none" }}
+              >
+                <h3>{character.name}</h3>
                 <img
                   src={
                     character.thumbnail.path +
@@ -85,15 +103,19 @@ const Characters = () => {
                     character.thumbnail.extension
                   }
                 />
+                <div>
+                  {character.description ? (
+                    <p>{character.description}</p>
+                  ) : (
+                    <p>Description will come soon...</p>
+                  )}
+                </div>
               </Link>
               <button
+                title="Add it to your favorites"
                 onClick={() => favoriteClick(character._id)}
-
-                // onClick={() => {
-                //   Cookies.set(character.name, character._id, { expires: 365 });
-                // }}
               >
-                Favoris
+                <FontAwesomeIcon icon="fa-star" />
               </button>
             </div>
           );

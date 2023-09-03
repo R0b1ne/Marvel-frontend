@@ -1,5 +1,4 @@
 import "./App.css";
-import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Pages
@@ -10,6 +9,14 @@ import Favorites from "./pages/Favorites";
 
 //Components
 import Header from "./components/Header";
+
+import { library } from "@fortawesome/fontawesome-svg-core";
+import {
+  faCaretRight,
+  faCaretLeft,
+  faStar,
+} from "@fortawesome/free-solid-svg-icons";
+library.add(faCaretLeft, faCaretRight, faStar);
 
 function App() {
   return (

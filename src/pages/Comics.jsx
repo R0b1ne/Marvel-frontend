@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Comics = () => {
   const [data, setData] = useState({});
@@ -41,32 +42,46 @@ const Comics = () => {
     <div className="classic-container">
       <section className="classic-first-section">
         <h1>Comics</h1>
-        <div>
+        <div className="classic-search">
+          <label>
+            <span>Comics </span> search bar
+          </label>
           <input
             type="text"
             value={search}
-            placeholder="Search a Comic"
             onChange={(event) => {
               setSearch(event.target.value);
             }}
           />
-          <div className="pagination-buttons">
-            <button onClick={handlePreviousPage}>Previous</button>
-            <button onClick={handleNextPage}>Next</button>
-          </div>
+        </div>
+        <div className="pagination-buttons">
+          <button onClick={handlePreviousPage}>
+            <FontAwesomeIcon icon="fa-caret-left" />
+          </button>
+          <button onClick={handleNextPage}>
+            <FontAwesomeIcon icon="fa-caret-right" />
+          </button>
         </div>
       </section>
       <section className="classic-second-section">
         {data.results.map((comic) => {
           return (
-            <article key={comic._id}>
-              <h2>{comic.title}</h2>
-              <p>{comic.description}</p>
-              <img
-                src={comic.thumbnail.path + "." + comic.thumbnail.extension}
-                alt={comic.thumbnail.path + "." + comic.thumbnail.extension}
-              />
-            </article>
+            <div className="card" key={comic._id}>
+              <div>
+                <h3>{comic.title}</h3>
+                <img
+                  src={comic.thumbnail.path + "." + comic.thumbnail.extension}
+                  alt={comic.thumbnail.path + "." + comic.thumbnail.extension}
+                />
+                <div>
+                  {comic.description ? (
+                    <p>{comic.description}</p>
+                  ) : (
+                    <p>Description will come soon...</p>
+                  )}
+                </div>
+              </div>
+            </div>
           );
         })}
       </section>
